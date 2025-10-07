@@ -15,9 +15,9 @@
 			<!--
 			 -->
 			<property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver" />
-			<property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/daw" />
-			<property name="jakarta.persistence.jdbc.user" value="daw" />
-			<property name="jakarta.persistence.jdbc.password" value="daw" />
+			<property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://ep-flat-mode-ach20ejx.sa-east-1.aws.neon.tech/neondb?require&amp;channelBinding=require" />
+			<property name="jakarta.persistence.jdbc.user" value="neondb_owner" />
+			<property name="jakarta.persistence.jdbc.password" value="npg_IFMW0KvXfH3j" />
 			<!-- /Database PostgreSQL-->
 
 			<!-- HIBERNATE -->
