@@ -17,11 +17,11 @@ public class MainPessoaSave {
             PessoaDAO dao= new PessoaDAOImpl(emf);
             Pessoa pessoa=new Pessoa();
 
-            pessoa.setNome("a");
-            pessoa.setCpf("b");
-            pessoa.setTelefone("c");
-            pessoa.setEmail("d");
-            pessoa.setSenha_hash("e");
+            pessoa.setNome("Luan loreto");
+            pessoa.setCpf("153.232.256-13");
+            pessoa.setTelefone("839981635");
+            pessoa.setEmail("luanloreto@gmail.com");
+            pessoa.setSenha_hash("1234323424");
 
             dao.save(pessoa);
 
