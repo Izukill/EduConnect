@@ -18,13 +18,7 @@ public class Simulado {
     @Column(name = "qtd_questoes")
     private Integer qtdQuestoes;
 
-    //relacionamento manyto0ne com a entidade turma
-    @ManyToOne
-    @JoinColumn(name = "fk_idTurma")
-    private Turma turma;
 
-    @OneToMany(mappedBy = "simulado")
-    private Set<Nota> notas;
 
     public Long getId() {
         return id;
@@ -46,19 +40,5 @@ public class Simulado {
         this.qtdQuestoes = qtdQuestoes;
     }
 
-    public Turma getTurma() {
-        return turma;
-    }
 
-    public void setTurma(Turma turma) {
-        this.turma = turma;
-    }
-
-    public Set<Nota> getNotas() {
-        return notas;
-    }
-
-    public void setNotas(Set<Nota> notas) {
-        this.notas = notas;
-    }
 }

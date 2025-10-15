@@ -6,7 +6,6 @@ import br.edu.ifpb.es.daw.dao.impl.SimuladoDAOImpl;
 import br.edu.ifpb.es.daw.entities.Simulado;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-import br.edu.ifpb.es.daw.entities.Turma;
 
 public class MainSimuladoSave {
 
