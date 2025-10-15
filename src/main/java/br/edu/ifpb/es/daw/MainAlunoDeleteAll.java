@@ -1,41 +1,35 @@
 package br.edu.ifpb.es.daw;
 
+import br.edu.ifpb.es.daw.dao.AlunoDAO;
 import br.edu.ifpb.es.daw.dao.PersistenciaDawException;
-import br.edu.ifpb.es.daw.dao.PessoaDAO;
-import br.edu.ifpb.es.daw.dao.impl.PessoaDAOImpl;
-import br.edu.ifpb.es.daw.entities.Pessoa;
+import br.edu.ifpb.es.daw.dao.impl.AlunoDAOImpl;
+import br.edu.ifpb.es.daw.entities.Aluno;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 import java.util.List;
 
-public class MainPessoaDeleteAll {
-
+public class MainAlunoDeleteAll {
 
     public static void main(String[] args) {
 
         try(EntityManagerFactory emf = Persistence.createEntityManagerFactory("daw")){
 
-            PessoaDAO dao = new PessoaDAOImpl(emf);
+            AlunoDAO dao = new AlunoDAOImpl(emf);
 
-            List<Pessoa> pessoaList= dao.getAll();
+            List<Aluno> alunoList = dao.getAll();
 
-            for(Pessoa pessoa : pessoaList){
+            for(Aluno aluno : alunoList){
 
-                dao.delete(pessoa.getId());
+                dao.delete(aluno.getId());
             }
-
-
-
 
         } catch (PersistenciaDawException e) {
             throw new RuntimeException(e);
         }
 
+
     }
-
-
-
 
 
 }

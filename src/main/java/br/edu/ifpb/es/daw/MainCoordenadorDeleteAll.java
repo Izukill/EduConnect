@@ -1,30 +1,28 @@
 package br.edu.ifpb.es.daw;
 
+import br.edu.ifpb.es.daw.dao.CoordenadorDAO;
 import br.edu.ifpb.es.daw.dao.PersistenciaDawException;
-import br.edu.ifpb.es.daw.dao.PessoaDAO;
-import br.edu.ifpb.es.daw.dao.impl.PessoaDAOImpl;
-import br.edu.ifpb.es.daw.entities.Pessoa;
+import br.edu.ifpb.es.daw.dao.impl.CoordenadorDAOImpl;
+import br.edu.ifpb.es.daw.entities.Coordenador;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 import java.util.List;
 
-public class MainPessoaDeleteAll {
-
+public class MainCoordenadorDeleteAll {
 
     public static void main(String[] args) {
 
         try(EntityManagerFactory emf = Persistence.createEntityManagerFactory("daw")){
 
-            PessoaDAO dao = new PessoaDAOImpl(emf);
+            CoordenadorDAO dao = new CoordenadorDAOImpl(emf);
 
-            List<Pessoa> pessoaList= dao.getAll();
+            List<Coordenador> coordenadorList = dao.getAll();
 
-            for(Pessoa pessoa : pessoaList){
+            for(Coordenador coordenador : coordenadorList){
 
-                dao.delete(pessoa.getId());
+                dao.delete(coordenador.getId());
             }
-
 
 
 
@@ -33,9 +31,4 @@ public class MainPessoaDeleteAll {
         }
 
     }
-
-
-
-
-
 }

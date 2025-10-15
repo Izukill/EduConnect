@@ -1,24 +1,64 @@
 package br.edu.ifpb.es.daw.entities;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.PrimaryKeyJoinColumn;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.Objects;
 
 @Entity
 @Table(name = "Alunos")
-@PrimaryKeyJoinColumn(name = "pessoa_id")
-public class Aluno extends Pessoa {
+public class Aluno{
 
+
+    public Aluno(String matricula) {
+        this.matricula = matricula;
+    }
 
     public Aluno() {
     }
 
-    private int matricula;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long Id;
 
 
-    public int getMatricula() {
+    @Column(unique = true, nullable = false)
+    private String matricula;
+
+
+    public String getMatricula() {
         return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+
+
+    public Long getId() {
+        return Id;
+    }
+
+    public void setId(Long id) {
+        Id = id;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Aluno)) return false;
+        Aluno aluno = (Aluno) o;
+        return Objects.equals(getId(), aluno.getId());
+    }
+
+    public int hashCode() {
+        return Objects.hashCode(getId());
+    }
+
+    @Override
+    public String toString() {
+        return "Aluno{" +
+                "matricula=" + matricula +
+                "id=" + Id+ "}";
     }
 }
