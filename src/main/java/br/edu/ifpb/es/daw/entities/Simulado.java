@@ -1,9 +1,10 @@
 package br.edu.ifpb.es.daw.entities;
 
 import jakarta.persistence.*;
+import java.util.Set;
 
 @Entity
-@Table(name = "Simulados")
+@Table(name = "Simulado")
 public class Simulado {
 
     public Simulado() {}
@@ -14,9 +15,16 @@ public class Simulado {
 
     private String descricao;
 
+    @Column(name = "qtd_questoes")
     private Integer qtdQuestoes;
 
-    private Long fk_idTurma;
+    //relacionamento manyto0ne com a entidade turma
+    @ManyToOne
+    @JoinColumn(name = "fk_idTurma")
+    private Turma turma;
+
+    @OneToMany(mappedBy = "simulado")
+    private Set<Nota> notas;
 
     public Long getId() {
         return id;
@@ -38,11 +46,19 @@ public class Simulado {
         this.qtdQuestoes = qtdQuestoes;
     }
 
-    public Long getFk_idTurma() {
-        return fk_idTurma;
+    public Turma getTurma() {
+        return turma;
     }
 
-    public void setFk_idTurma(Long fk_idTurma) {
-        this.fk_idTurma = fk_idTurma;
+    public void setTurma(Turma turma) {
+        this.turma = turma;
+    }
+
+    public Set<Nota> getNotas() {
+        return notas;
+    }
+
+    public void setNotas(Set<Nota> notas) {
+        this.notas = notas;
     }
 }
