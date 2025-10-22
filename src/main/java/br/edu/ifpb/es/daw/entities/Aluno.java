@@ -22,6 +22,15 @@ public class Aluno{
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long Id;
 
+    @OneToOne
+    @JoinColumn(name = "pessoa_id")
+    private Pessoa pessoa;
+
+
+    @OneToMany
+    @JoinColumn(name = "turma_id")
+    private Turma turma;
+
 
     @Column(unique = true, nullable = false)
     private String matricula;
@@ -59,6 +68,8 @@ public class Aluno{
     public String toString() {
         return "Aluno{" +
                 "matricula=" + matricula +
-                "id=" + Id+ "}";
+                "id=" + Id +
+                "pessoa_id= " + pessoa.getId() +
+                "turma_id= " + turma.getId() + "}";
     }
 }

@@ -16,6 +16,10 @@ public class Professor {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long Id;
 
+    @OneToOne
+    @JoinColumn (name = "pessoa_id")
+    private Pessoa pessoa;
+
     private float salario;
 
     public Long getId() {
@@ -50,7 +54,8 @@ public class Professor {
     public String toString() {
         return "Professor{" +
                 "salario=" + salario +
-                "id=" + Id +"}";
+                "id=" + Id  +
+                "pessoa_id = " + pessoa.getId() + "}";
     }
 
 

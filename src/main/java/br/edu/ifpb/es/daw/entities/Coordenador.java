@@ -18,6 +18,10 @@ public class Coordenador {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long Id;
 
+    @OneToOne
+    @JoinColumn(name = "pessoa_id")
+    private Pessoa pessoa;
+
     private float salario;
 
 
@@ -50,9 +54,10 @@ public class Coordenador {
 
     @Override
     public String toString() {
-        return "Professor{" +
+        return "Coordenador{" +
                 "salario=" + salario +
-                "id=" + Id +"}";
+                "id=" + Id +
+                "pessoa_id = " + pessoa.getId() + "}";
     }
 }
 
