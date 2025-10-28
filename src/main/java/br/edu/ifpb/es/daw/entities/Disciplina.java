@@ -2,6 +2,8 @@ package br.edu.ifpb.es.daw.entities;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "disciplinas")
 
@@ -13,37 +15,24 @@ public class Disciplina {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JoinColumn(name = "fk_idTurma", nullable = false)
-    private Turma turma;
-
-    @JoinColumn(name = "fk_idProfessor", nullable = false)
-    private Turma professor;
-
-    private String ch;
+    private Integer ch;
     private String ementa;
     private String nome;
 
-    public Turma getTurma() {
-        return turma;
+    public Long getId() {
+        return id;
     }
 
-    public void setTurma(Turma turma) {
-        this.turma = turma;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Turma getProfessor() {
-        return professor;
-    }
 
-    public void setProfessor(Turma professor) {
-        this.professor = professor;
-    }
-
-    public String getCh() {
+    public int getCh() {
         return ch;
     }
 
-    public void setCh(String ch) {
+    public void setCh(int ch) {
         this.ch = ch;
     }
 
@@ -65,63 +54,20 @@ public class Disciplina {
 
     @Override
     public String toString() {
-        return "Disciplina [id=" + id + ", turma=" + turma + ", professor=" + professor + ", ch=" + ch + ", ementa="
+        return "Disciplina [id=" + id + ", ch=" + ch + ", ementa="
                 + ementa + ", nome=" + nome + "]";
     }
 
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((turma == null) ? 0 : turma.hashCode());
-        result = prime * result + ((professor == null) ? 0 : professor.hashCode());
-        result = prime * result + ((ch == null) ? 0 : ch.hashCode());
-        result = prime * result + ((ementa == null) ? 0 : ementa.hashCode());
-        result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-        return result;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Disciplina that = (Disciplina) o;
+        return ch == that.ch && Objects.equals(id, that.id) && Objects.equals(ementa, that.ementa) && Objects.equals(nome, that.nome);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Disciplina other = (Disciplina) obj;
-        if (id == null) {
-            if (other.id != null)
-                return false;
-        } else if (!id.equals(other.id))
-            return false;
-        if (turma == null) {
-            if (other.turma != null)
-                return false;
-        } else if (!turma.equals(other.turma))
-            return false;
-        if (professor == null) {
-            if (other.professor != null)
-                return false;
-        } else if (!professor.equals(other.professor))
-            return false;
-        if (ch == null) {
-            if (other.ch != null)
-                return false;
-        } else if (!ch.equals(other.ch))
-            return false;
-        if (ementa == null) {
-            if (other.ementa != null)
-                return false;
-        } else if (!ementa.equals(other.ementa))
-            return false;
-        if (nome == null) {
-            if (other.nome != null)
-                return false;
-        } else if (!nome.equals(other.nome))
-            return false;
-        return true;
+    public int hashCode() {
+        return Objects.hash(id, ch, ementa, nome);
     }
-
 }

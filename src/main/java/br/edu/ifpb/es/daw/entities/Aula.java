@@ -2,6 +2,9 @@ package br.edu.ifpb.es.daw.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "aulas")
 public class Aula {
@@ -12,11 +15,9 @@ public class Aula {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JoinColumn(name = "fk_idProfessor", nullable = false)
-    private Professor professor;
 
     private String conteudo;
-    private String data;
+    private LocalDateTime data;
     private String observacoes;
 
     public Long getId() {
@@ -27,13 +28,7 @@ public class Aula {
         this.id = id;
     }
 
-    public Professor getProfessor() {
-        return professor;
-    }
 
-    public void setProfessor(Professor professor) {
-        this.professor = professor;
-    }
 
     public String getConteudo() {
         return conteudo;
@@ -43,11 +38,11 @@ public class Aula {
         this.conteudo = conteudo;
     }
 
-    public String getData() {
+    public LocalDateTime getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(LocalDateTime data) {
         this.data = data;
     }
 
@@ -61,7 +56,7 @@ public class Aula {
 
     @Override
     public String toString() {
-        return "Aula [id=" + id + ", professor=" + professor + ", conteudo=" + conteudo + ", data=" + data
+        return "Aula [id=" + id + ", conteudo=" + conteudo + ", data=" + data
                 + ", observacoes=" + observacoes + "]";
     }
 
@@ -70,7 +65,6 @@ public class Aula {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((professor == null) ? 0 : professor.hashCode());
         result = prime * result + ((conteudo == null) ? 0 : conteudo.hashCode());
         result = prime * result + ((data == null) ? 0 : data.hashCode());
         result = prime * result + ((observacoes == null) ? 0 : observacoes.hashCode());
@@ -90,11 +84,6 @@ public class Aula {
             if (other.id != null)
                 return false;
         } else if (!id.equals(other.id))
-            return false;
-        if (professor == null) {
-            if (other.professor != null)
-                return false;
-        } else if (!professor.equals(other.professor))
             return false;
         if (conteudo == null) {
             if (other.conteudo != null)
