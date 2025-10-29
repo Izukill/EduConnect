@@ -4,8 +4,6 @@ import br.edu.ifpb.es.daw.dao.NotaDAO;
 import br.edu.ifpb.es.daw.dao.PersistenciaDawException;
 import br.edu.ifpb.es.daw.dao.impl.NotaDAOImpl;
 import br.edu.ifpb.es.daw.entities.Nota;
-import br.edu.ifpb.es.daw.entities.Aluno;
-import br.edu.ifpb.es.daw.entities.Simulado;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 

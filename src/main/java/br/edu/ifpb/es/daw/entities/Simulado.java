@@ -1,73 +1,64 @@
 package br.edu.ifpb.es.daw.entities;
 
 import jakarta.persistence.*;
-import java.util.Objects;
+import java.util.Set;
 
 @Entity
-@Table(name = "Simulados")
+@Table(name = "Simulado")
 public class Simulado {
 
-    public Simulado() {
-    }
+    public Simulado() {}
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nome;
+    private String descricao;
 
-    private String dataAplicacao;
+    @Column(name = "qtd_questoes")
+    private Integer qtdQuestoes;
 
-    private Double notaMaxima;
+    //relacionamento manyto0ne com a entidade turma
+    @ManyToOne
+    @JoinColumn(name = "fk_idTurma")
+    private Turma turma;
+
+    @OneToMany(mappedBy = "simulado")
+    private Set<Nota> notas;
 
     public Long getId() {
         return id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
-    public String getDataAplicacao() {
-        return dataAplicacao;
+    public Integer getQtdQuestoes() {
+        return qtdQuestoes;
     }
 
-    public void setDataAplicacao(String dataAplicacao) {
-        this.dataAplicacao = dataAplicacao;
+    public void setQtdQuestoes(Integer qtdQuestoes) {
+        this.qtdQuestoes = qtdQuestoes;
     }
 
-    public Double getNotaMaxima() {
-        return notaMaxima;
+    public Turma getTurma() {
+        return turma;
     }
 
-    public void setNotaMaxima(Double notaMaxima) {
-        this.notaMaxima = notaMaxima;
+    public void setTurma(Turma turma) {
+        this.turma = turma;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Simulado)) return false;
-        Simulado simulado = (Simulado) o;
-        return id != null && id.equals(simulado.id);
+    public Set<Nota> getNotas() {
+        return notas;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
-    }
-
-    @Override
-    public String toString() {
-        return "Simulado{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", dataAplicacao='" + dataAplicacao + '\'' +
-                ", notaMaxima=" + notaMaxima +
-                '}';
+    public void setNotas(Set<Nota> notas) {
+        this.notas = notas;
     }
 }
