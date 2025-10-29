@@ -1,64 +1,73 @@
 package br.edu.ifpb.es.daw.entities;
 
 import jakarta.persistence.*;
-import java.util.Set;
+import java.util.Objects;
 
 @Entity
-@Table(name = "Simulado")
+@Table(name = "Simulados")
 public class Simulado {
 
-    public Simulado() {}
+    public Simulado() {
+    }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    private String descricao;
+    private String nome;
 
-    @Column(name = "qtd_questoes")
-    private Integer qtdQuestoes;
+    private String dataAplicacao;
 
-    //relacionamento manyto0ne com a entidade turma
-    @ManyToOne
-    @JoinColumn(name = "fk_idTurma")
-    private Turma turma;
-
-    @OneToMany(mappedBy = "simulado")
-    private Set<Nota> notas;
+    private Double notaMaxima;
 
     public Long getId() {
         return id;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getNome() {
+        return nome;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public Integer getQtdQuestoes() {
-        return qtdQuestoes;
+    public String getDataAplicacao() {
+        return dataAplicacao;
     }
 
-    public void setQtdQuestoes(Integer qtdQuestoes) {
-        this.qtdQuestoes = qtdQuestoes;
+    public void setDataAplicacao(String dataAplicacao) {
+        this.dataAplicacao = dataAplicacao;
     }
 
-    public Turma getTurma() {
-        return turma;
+    public Double getNotaMaxima() {
+        return notaMaxima;
     }
 
-    public void setTurma(Turma turma) {
-        this.turma = turma;
+    public void setNotaMaxima(Double notaMaxima) {
+        this.notaMaxima = notaMaxima;
     }
 
-    public Set<Nota> getNotas() {
-        return notas;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Simulado)) return false;
+        Simulado simulado = (Simulado) o;
+        return id != null && id.equals(simulado.id);
     }
 
-    public void setNotas(Set<Nota> notas) {
-        this.notas = notas;
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Simulado{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", dataAplicacao='" + dataAplicacao + '\'' +
+                ", notaMaxima=" + notaMaxima +
+                '}';
     }
 }

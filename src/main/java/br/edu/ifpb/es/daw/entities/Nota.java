@@ -1,90 +1,73 @@
 package br.edu.ifpb.es.daw.entities;
 
 import jakarta.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "Notas")
 public class Nota {
 
-    public Nota() {}
+    public Nota() {
+    }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    private Double nota_linguagens;
-    private Double nota_redacao;
-    private Double nota_ciencHumanas;
-    private Double nota_ciencNatureza;
-    private Double nota_matematica;
+    private Double valor;
 
-    //relecionamento com aluno
-    @ManyToOne
-    @JoinColumn(name = "fk_idAluno")
-    private Aluno aluno;
+    private String descricao;
 
-    //relacionamento com simulado
-    @ManyToOne
-    @JoinColumn(name = "fk_idSimulado")
-    private Simulado simulado;
+    private String dataRegistro;
 
     public Long getId() {
         return id;
     }
 
-    public Double getNota_linguagens() {
-        return nota_linguagens;
+    public Double getValor() {
+        return valor;
     }
 
-    public void setNota_linguagens(Double nota_linguagens) {
-        this.nota_linguagens = nota_linguagens;
+    public void setValor(Double valor) {
+        this.valor = valor;
     }
 
-    public Double getNota_redacao() {
-        return nota_redacao;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setNota_redacao(Double nota_redacao) {
-        this.nota_redacao = nota_redacao;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
-    public Double getNota_ciencHumanas() {
-        return nota_ciencHumanas;
+    public String getDataRegistro() {
+        return dataRegistro;
     }
 
-    public void setNota_ciencHumanas(Double nota_ciencHumanas) {
-        this.nota_ciencHumanas = nota_ciencHumanas;
+    public void setDataRegistro(String dataRegistro) {
+        this.dataRegistro = dataRegistro;
     }
 
-    public Double getNota_ciencNatureza() {
-        return nota_ciencNatureza;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Nota)) return false;
+        Nota nota = (Nota) o;
+        return id != null && id.equals(nota.id);
     }
 
-    public void setNota_ciencNatureza(Double nota_ciencNatureza) {
-        this.nota_ciencNatureza = nota_ciencNatureza;
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 
-    public Double getNota_matematica() {
-        return nota_matematica;
-    }
-
-    public void setNota_matematica(Double nota_matematica) {
-        this.nota_matematica = nota_matematica;
-    }
-
-    public Aluno getAluno() {
-        return aluno;
-    }
-
-    public void setAluno(Aluno aluno) {
-        this.aluno = aluno;
-    }
-
-    public Simulado getSimulado() {
-        return simulado;
-    }
-
-    public void setSimulado(Simulado simulado) {
-        this.simulado = simulado;
+    @Override
+    public String toString() {
+        return "Nota{" +
+                "id=" + id +
+                ", valor=" + valor +
+                ", descricao='" + descricao + '\'' +
+                ", dataRegistro='" + dataRegistro + '\'' +
+                '}';
     }
 }

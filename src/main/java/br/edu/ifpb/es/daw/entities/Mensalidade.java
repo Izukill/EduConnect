@@ -1,46 +1,36 @@
 package br.edu.ifpb.es.daw.entities;
 
 import jakarta.persistence.*;
-import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
 @Table(name = "Mensalidades")
 public class Mensalidade {
 
-    public Mensalidade() {}
+    public Mensalidade() {
+    }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    private LocalDate data;
-    private LocalDate vencimento;
     private Double valor;
-    private String status;
 
-    //relacionamemto com aluno
-    @ManyToOne
-    @JoinColumn(name = "fk_idAluno")
-    private Aluno aluno;
+    private String mes;
+
+    private String dataPagamento;
+
+    @Enumerated(EnumType.STRING)
+    private StatusMensalidade status;
+
+    public enum StatusMensalidade {
+        PAGA,
+        ATRASADA,
+        PENDENTE
+    }
 
     public Long getId() {
         return id;
-    }
-
-    public LocalDate getData() {
-        return data;
-    }
-
-    public void setData(LocalDate data) {
-        this.data = data;
-    }
-
-    public LocalDate getVencimento() {
-        return vencimento;
-    }
-
-    public void setVencimento(LocalDate vencimento) {
-        this.vencimento = vencimento;
     }
 
     public Double getValor() {
@@ -51,19 +41,50 @@ public class Mensalidade {
         this.valor = valor;
     }
 
-    public String getStatus() {
+    public String getMes() {
+        return mes;
+    }
+
+    public void setMes(String mes) {
+        this.mes = mes;
+    }
+
+    public String getDataPagamento() {
+        return dataPagamento;
+    }
+
+    public void setDataPagamento(String dataPagamento) {
+        this.dataPagamento = dataPagamento;
+    }
+
+    public StatusMensalidade getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(StatusMensalidade status) {
         this.status = status;
     }
 
-    public Aluno getAluno() {
-        return aluno;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Mensalidade)) return false;
+        Mensalidade that = (Mensalidade) o;
+        return id != null && id.equals(that.id);
     }
 
-    public void setAluno(Aluno aluno) {
-        this.aluno = aluno;
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
+    @Override
+    public String toString() {
+        return "Mensalidade{" +
+                "id=" + id +
+                ", valor=" + valor +
+                ", mes='" + mes + '\'' +
+                ", dataPagamento='" + dataPagamento + '\'' +
+                ", status=" + status +
+                '}';
     }
 }
