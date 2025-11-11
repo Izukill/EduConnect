@@ -7,6 +7,8 @@ import br.edu.ifpb.es.daw.entities.Mensalidade;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
+import java.time.LocalDate;
+
 public class MainMensalidadeSave {
 
     public static void main(String[] args) {
@@ -15,10 +17,10 @@ public class MainMensalidadeSave {
             Mensalidade mensalidade = new Mensalidade();
 
             // Ajustando para refletir a nova estrutura da entidade
-            mensalidade.setValor(150.00);
-            mensalidade.setMes("Outubro");
-            mensalidade.setDataPagamento("2025-10-14");
-            mensalidade.setStatus(Mensalidade.StatusMensalidade.PENDENTE);
+            mensalidade.setValor(1500.00);
+            mensalidade.setData(LocalDate.of(2025,11,11));
+            mensalidade.setVencimento(LocalDate.of(2025,12,11));
+            mensalidade.setStatus("Pendente");
 
             dao.save(mensalidade);
 

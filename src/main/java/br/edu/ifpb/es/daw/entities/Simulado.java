@@ -19,7 +19,7 @@ public class Simulado {
     private Integer qtdQuestoes;
 
     //relacionamento manyto0ne com a entidade turma
-    @ManyToOne
+    @ManyToMany
     @JoinColumn(name = "fk_idTurma")
     private Turma turma;
 
