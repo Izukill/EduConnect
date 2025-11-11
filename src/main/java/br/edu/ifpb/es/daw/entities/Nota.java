@@ -9,7 +9,7 @@ public class Nota {
     public Nota() {}
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private Double nota_linguagens;
@@ -18,8 +18,15 @@ public class Nota {
     private Double nota_ciencNatureza;
     private Double nota_matematica;
 
+    //relecionamento com aluno
+    @ManyToOne
+    @JoinColumn(name = "fk_idAluno")
+    private Aluno aluno;
 
-
+    //relacionamento com simulado
+    @ManyToOne
+    @JoinColumn(name = "fk_idSimulado")
+    private Simulado simulado;
 
     public Long getId() {
         return id;
@@ -65,4 +72,19 @@ public class Nota {
         this.nota_matematica = nota_matematica;
     }
 
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
+    }
+
+    public Simulado getSimulado() {
+        return simulado;
+    }
+
+    public void setSimulado(Simulado simulado) {
+        this.simulado = simulado;
+    }
 }

@@ -6,7 +6,6 @@ import br.edu.ifpb.es.daw.dao.impl.MensalidadeDAOImpl;
 import br.edu.ifpb.es.daw.entities.Mensalidade;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-import java.time.LocalDate;
 
 public class MainMensalidadeSave {
 
@@ -15,15 +14,15 @@ public class MainMensalidadeSave {
             MensalidadeDAO dao = new MensalidadeDAOImpl(emf);
             Mensalidade mensalidade = new Mensalidade();
 
-            mensalidade.setData(LocalDate.now());
-            mensalidade.setVencimento(LocalDate.now().plusMonths(1));
+            // Ajustando para refletir a nova estrutura da entidade
             mensalidade.setValor(150.00);
-            mensalidade.setStatus("Pendente");
-
+            mensalidade.setMes("Outubro");
+            mensalidade.setDataPagamento("2025-10-14");
+            mensalidade.setStatus(Mensalidade.StatusMensalidade.PENDENTE);
 
             dao.save(mensalidade);
 
-            System.out.println("Mensalidede salva com sucesso!");
+            System.out.println("Mensalidade salva com sucesso!");
         } catch (PersistenciaDawException e) {
             throw new RuntimeException("Erro ao salvar a mensalidade", e);
         }

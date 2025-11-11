@@ -10,7 +10,7 @@ public class Mensalidade {
     public Mensalidade() {}
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private LocalDate data;
@@ -18,7 +18,10 @@ public class Mensalidade {
     private Double valor;
     private String status;
 
-
+    //relacionamemto com aluno
+    @ManyToOne
+    @JoinColumn(name = "fk_idAluno")
+    private Aluno aluno;
 
     public Long getId() {
         return id;
@@ -56,4 +59,11 @@ public class Mensalidade {
         this.status = status;
     }
 
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
+    }
 }
