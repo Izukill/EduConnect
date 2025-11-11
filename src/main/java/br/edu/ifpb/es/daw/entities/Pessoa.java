@@ -34,7 +34,7 @@ public class Pessoa {
 
     private String  telefone;
 
-    private String cpf;
+    private String cpf;//TODO colocar uma restrição para ser nulo
 
     public Long getId() {
         return Id;

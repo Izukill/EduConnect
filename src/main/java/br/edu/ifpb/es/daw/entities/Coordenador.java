@@ -18,12 +18,20 @@ public class Coordenador {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long Id;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "pessoa_id")
     private Pessoa pessoa;
 
     private float salario;
 
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+    }
 
     public float getSalario() {
         return salario;

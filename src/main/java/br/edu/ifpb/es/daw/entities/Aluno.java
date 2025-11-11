@@ -22,12 +22,12 @@ public class Aluno{
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long Id;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "pessoa_id")
     private Pessoa pessoa;
 
 
-    @OneToMany
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "turma_id")
     private Turma turma;
 
@@ -44,6 +44,21 @@ public class Aluno{
         this.matricula = matricula;
     }
 
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+    }
+
+    public Turma getTurma() {
+        return turma;
+    }
+
+    public void setTurma(Turma turma) {
+        this.turma = turma;
+    }
 
     public Long getId() {
         return Id;
