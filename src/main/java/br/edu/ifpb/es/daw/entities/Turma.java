@@ -23,6 +23,8 @@ public class Turma {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+
+
     private Long id;
 
     @OneToMany(mappedBy = "turma", cascade = CascadeType.PERSIST)
