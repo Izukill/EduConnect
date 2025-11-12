@@ -2,6 +2,7 @@ package br.edu.ifpb.es.daw.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -19,6 +20,10 @@ public class Professor {
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn (name = "pessoa_id")
     private Pessoa pessoa;
+
+
+    @OneToMany(mappedBy = "professor", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<Aula> aulas;
 
     private float salario;
 

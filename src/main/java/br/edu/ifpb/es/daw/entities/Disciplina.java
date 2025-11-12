@@ -33,7 +33,7 @@ public class Disciplina {
 
 
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "fk_idProfessor", nullable = false)
+    @JoinColumn(name = "fk_idProfessor", nullable = true)
     private Professor professor;
 
     private Integer ch;

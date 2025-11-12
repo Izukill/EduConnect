@@ -43,7 +43,7 @@ public class MainNotaSave {
 
             dao.save(nota);
 
-            System.out.println("Nota salva com sucesso!");
+
         } catch (PersistenciaDawException e) {
             throw new RuntimeException("Erro ao salvar a nota", e);
         }

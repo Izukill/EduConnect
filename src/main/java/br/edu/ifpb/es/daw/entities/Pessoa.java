@@ -26,6 +26,21 @@ public class Pessoa {
     private Long Id;
 
 
+
+    //Referencias para poder excluir pessoa e a sua referencia ao mesmo tempo
+
+    @OneToOne(mappedBy = "pessoa", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private Aluno aluno;
+
+
+    @OneToOne(mappedBy = "pessoa", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private Professor professor;
+
+
+    @OneToOne(mappedBy = "pessoa", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private Coordenador coordenador;
+
+
     private String nome;
 
     private String email;
@@ -34,7 +49,7 @@ public class Pessoa {
 
     private String  telefone;
 
-    private String cpf;//TODO colocar uma restrição para ser nulo
+    private String cpf;
 
     public Long getId() {
         return Id;

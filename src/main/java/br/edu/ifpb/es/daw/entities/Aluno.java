@@ -3,6 +3,7 @@ package br.edu.ifpb.es.daw.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -10,13 +11,16 @@ import java.util.Objects;
 public class Aluno{
 
 
-    public Aluno(String matricula) {
-        this.matricula = matricula;
-    }
-
     public Aluno() {
     }
 
+    public Aluno(Long id, String matricula, List<Nota> notas, Pessoa pessoa, Turma turma) {
+        Id = id;
+        this.matricula = matricula;
+        this.notas = notas;
+        this.pessoa = pessoa;
+        this.turma = turma;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -27,8 +31,20 @@ public class Aluno{
     private Pessoa pessoa;
 
 
+    @OneToMany(mappedBy = "aluno", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<Nota> notas;
+
+
+    @OneToMany(mappedBy = "aluno", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<Mensalidade> mensalidades;
+
+
+    @OneToMany(mappedBy = "aluno", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<Presenca> presencas;
+
+
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "turma_id")
+    @JoinColumn(name = "turma_id", nullable = true)
     private Turma turma;
 
 
@@ -42,6 +58,30 @@ public class Aluno{
 
     public void setMatricula(String matricula) {
         this.matricula = matricula;
+    }
+
+    public List<Nota> getNotas() {
+        return notas;
+    }
+
+    public void setNotas(List<Nota> notas) {
+        this.notas = notas;
+    }
+
+    public List<Mensalidade> getMensalidades() {
+        return mensalidades;
+    }
+
+    public void setMensalidades(List<Mensalidade> mensalidades) {
+        this.mensalidades = mensalidades;
+    }
+
+    public List<Presenca> getPresencas() {
+        return presencas;
+    }
+
+    public void setPresencas(List<Presenca> presencas) {
+        this.presencas = presencas;
     }
 
     public Pessoa getPessoa() {

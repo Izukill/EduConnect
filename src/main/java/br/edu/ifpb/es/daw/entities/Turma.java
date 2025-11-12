@@ -28,6 +28,9 @@ public class Turma {
     @OneToMany(mappedBy = "turma", cascade = CascadeType.PERSIST)
     private List<Aluno> alunos;
 
+    @OneToMany(mappedBy = "turma", cascade = CascadeType.REMOVE)
+    private List<Aula> aulas;
+
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "turma_disciplina", joinColumns = @JoinColumn(name = "fk_idTurma"),
             inverseJoinColumns = @JoinColumn(name = "fk_idDisciplina"))

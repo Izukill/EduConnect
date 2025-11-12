@@ -3,6 +3,7 @@ package br.edu.ifpb.es.daw.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -35,6 +36,9 @@ public class Aula {
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "fk_idTurma")
     private Turma turma;
+
+    @OneToMany(mappedBy = "aula", cascade = CascadeType.REMOVE)
+    private List<Presenca> presencas;
 
     private String conteudo;
     private LocalDate data;

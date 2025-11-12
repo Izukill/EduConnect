@@ -3,21 +3,29 @@ package br.edu.ifpb.es.daw;
 import br.edu.ifpb.es.daw.dao.MensalidadeDAO;
 import br.edu.ifpb.es.daw.dao.PersistenciaDawException;
 import br.edu.ifpb.es.daw.dao.impl.MensalidadeDAOImpl;
+import br.edu.ifpb.es.daw.entities.Mensalidade;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-public class MainMensalidadeDeleteAll {
+import java.util.List;
 
+public class MainMensalidadeDeleteAll {
     public static void main(String[] args) {
+
         try (EntityManagerFactory emf = Persistence.createEntityManagerFactory("daw")) {
+
             MensalidadeDAO dao = new MensalidadeDAOImpl(emf);
 
-            Long idMensalidadeParaDeletar = 1L;
-            dao.delete(idMensalidadeParaDeletar);
+            List<Mensalidade> mensalidades = dao.getAll();
 
-            System.out.println("Mensalidade com ID " + idMensalidadeParaDeletar + " deletada com sucesso!");
+            for (Mensalidade m : mensalidades) {
+                dao.delete(m.getId());
+            }
+
+
+
         } catch (PersistenciaDawException e) {
-            throw new RuntimeException("Erro ao deletar a mensalidade", e);
+            throw new RuntimeException("Erro ao excluir mensalidades", e);
         }
     }
 }
