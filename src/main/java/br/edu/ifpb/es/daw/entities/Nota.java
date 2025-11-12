@@ -6,17 +6,54 @@ import jakarta.persistence.*;
 @Table(name = "Notas")
 public class Nota {
 
-    public Nota() {}
+    public Nota() {
+
+    }
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    private Double nota_linguagens;
-    private Double nota_redacao;
-    private Double nota_ciencHumanas;
-    private Double nota_ciencNatureza;
-    private Double nota_matematica;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "fk_idAluno", nullable = false)
+    private Aluno aluno;
+
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "fk_idSimulado", nullable = false)
+    private Simulado simulado;
+
+
+
+
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Simulado getSimulado() {
+        return simulado;
+    }
+
+    public void setSimulado(Simulado simulado) {
+        this.simulado = simulado;
+    }
+
+    private Double notaLinguagens;
+    private Double notaRedacao;
+    private Double notaCienciasHumanas;
+    private Double notaCienciasNatureza;
+    private Double notaMatematica;
+
 
 
 
@@ -25,44 +62,69 @@ public class Nota {
         return id;
     }
 
-    public Double getNota_linguagens() {
-        return nota_linguagens;
+    public Double getNotaCienciasHumanas() {
+        return notaCienciasHumanas;
     }
 
-    public void setNota_linguagens(Double nota_linguagens) {
-        this.nota_linguagens = nota_linguagens;
+    public void setNotaCienciasHumanas(Double notaCienciasHumanas) {
+        this.notaCienciasHumanas = notaCienciasHumanas;
     }
 
-    public Double getNota_redacao() {
-        return nota_redacao;
+    public Double getNotaCienciasNatureza() {
+        return notaCienciasNatureza;
     }
 
-    public void setNota_redacao(Double nota_redacao) {
-        this.nota_redacao = nota_redacao;
+    public void setNotaCienciasNatureza(Double notaCienciasNatureza) {
+        this.notaCienciasNatureza = notaCienciasNatureza;
     }
 
-    public Double getNota_ciencHumanas() {
-        return nota_ciencHumanas;
+    public Double getNotaLinguagens() {
+        return notaLinguagens;
     }
 
-    public void setNota_ciencHumanas(Double nota_ciencHumanas) {
-        this.nota_ciencHumanas = nota_ciencHumanas;
+    public void setNotaLinguagens(Double notaLinguagens) {
+        this.notaLinguagens = notaLinguagens;
     }
 
-    public Double getNota_ciencNatureza() {
-        return nota_ciencNatureza;
+    public Double getNotaMatematica() {
+        return notaMatematica;
     }
 
-    public void setNota_ciencNatureza(Double nota_ciencNatureza) {
-        this.nota_ciencNatureza = nota_ciencNatureza;
+    public void setNotaMatematica(Double notaMatematica) {
+        this.notaMatematica = notaMatematica;
     }
 
-    public Double getNota_matematica() {
-        return nota_matematica;
+    public Double getNotaRedacao() {
+        return notaRedacao;
     }
 
-    public void setNota_matematica(Double nota_matematica) {
-        this.nota_matematica = nota_matematica;
+    public void setNotaRedacao(Double notaRedacao) {
+        this.notaRedacao = notaRedacao;
+    }
+
+    @Override
+    public String toString() {
+        return "Nota [id=" + id +
+                ", aluno=" + (aluno != null ? aluno.getId() : "null") +
+                ", simulado=" + (simulado != null ? simulado.getId() : "null") +
+                ", notaLinguagens=" + notaLinguagens +
+                ", notaRedacao=" + notaRedacao +
+                ", notaCienciasHumanas=" + notaCienciasHumanas +
+                ", notaCienciasNatureza=" + notaCienciasNatureza +
+                ", notaMatematica=" + notaMatematica + "]";
+    }
+
+    @Override
+    public int hashCode() {
+        return (id != null) ? id.hashCode() : 0;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof Nota)) return false;
+        Nota other = (Nota) obj;
+        return id != null && id.equals(other.getId());
     }
 
 }

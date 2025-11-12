@@ -2,20 +2,42 @@ package br.edu.ifpb.es.daw.entities;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
-@Table(name = "presenças")
+@Table(name = "presencas")
 public class Presenca {
+
+
     public Presenca() {
 
     }
 
+    public Presenca(Aluno aluno, Aula aula, Integer id, StatusPresenca status) {
+        this.aluno = aluno;
+        this.aula = aula;
+        this.id = id;
+        this.status = status;
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Integer id;
+
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "fk_idAluno", nullable = false)
     private Aluno aluno;
 
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "fk_idAula", nullable = false)
     private Aula aula;
 
-    private String Status;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private StatusPresenca status;
 
     public Aluno getAluno() {
         return aluno;
@@ -33,54 +55,43 @@ public class Presenca {
         this.aula = aula;
     }
 
-    public String getStatus() {
-        return Status;
+    public StatusPresenca getStatus() {
+        return status;
     }
 
-    public void setStatus(String status) {
-        Status = status;
+    public void setStatus(StatusPresenca status) {
+        this.status = status;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @Override
     public String toString() {
-        return "Presenca [aluno=" + aluno + ", aula=" + aula + ", Status=" + Status + "]";
+        return "Presenca{" +
+                "id=" + id +
+                ", aluno_id=" + (aluno != null ? aluno.getId() : "null") +
+                ", aula_id=" + (aula != null ? aula.getId() : "null") +
+                ", status=" + status +
+                '}';
     }
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((aluno == null) ? 0 : aluno.hashCode());
-        result = prime * result + ((aula == null) ? 0 : aula.hashCode());
-        result = prime * result + ((Status == null) ? 0 : Status.hashCode());
-        return result;
+        return Objects.hash(id, aluno, aula, status);
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
+        if (this == obj) return true;
+        if (!(obj instanceof Presenca)) return false;
         Presenca other = (Presenca) obj;
-        if (aluno == null) {
-            if (other.aluno != null)
-                return false;
-        } else if (!aluno.equals(other.aluno))
-            return false;
-        if (aula == null) {
-            if (other.aula != null)
-                return false;
-        } else if (!aula.equals(other.aula))
-            return false;
-        if (Status == null) {
-            if (other.Status != null)
-                return false;
-        } else if (!Status.equals(other.Status))
-            return false;
-        return true;
+        return Objects.equals(id, other.id);
     }
 
 }

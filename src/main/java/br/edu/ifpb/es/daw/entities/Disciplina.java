@@ -2,48 +2,73 @@ package br.edu.ifpb.es.daw.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+import java.util.Objects;
+
 @Entity
 @Table(name = "disciplinas")
 
 public class Disciplina {
+
+
     public Disciplina() {
+    }
+
+    public Disciplina(Integer ch, String ementa, Long id, String nome, Professor professor, List<Turma> turmas) {
+        this.ch = ch;
+        this.ementa = ementa;
+        this.id = id;
+        this.nome = nome;
+        this.professor = professor;
+        this.turmas = turmas;
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JoinColumn(name = "fk_idTurma", nullable = false)
-    private Turma turma;
 
+    @ManyToMany(mappedBy = "disciplinas")
+    private List<Turma> turmas;
+
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "fk_idProfessor", nullable = false)
-    private Turma professor;
+    private Professor professor;
 
-    private String ch;
+    private Integer ch;
     private String ementa;
     private String nome;
 
-    public Turma getTurma() {
-        return turma;
+    public List<Turma> getTurmas() {
+        return turmas;
     }
 
-    public void setTurma(Turma turma) {
-        this.turma = turma;
+    public void setTurmas(List<Turma> turmas) {
+        this.turmas = turmas;
     }
 
-    public Turma getProfessor() {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Professor getProfessor() {
         return professor;
     }
 
-    public void setProfessor(Turma professor) {
+    public void setProfessor(Professor professor) {
         this.professor = professor;
     }
 
-    public String getCh() {
+    public Integer getCh() {
         return ch;
     }
 
-    public void setCh(String ch) {
+    public void setCh(Integer ch) {
         this.ch = ch;
     }
 
@@ -65,63 +90,26 @@ public class Disciplina {
 
     @Override
     public String toString() {
-        return "Disciplina [id=" + id + ", turma=" + turma + ", professor=" + professor + ", ch=" + ch + ", ementa="
-                + ementa + ", nome=" + nome + "]";
+        return "Disciplina{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", ch=" + ch +
+                ", professor_id=" + (professor != null ? professor.getId() : "null") +
+                ", turmas=" + (turmas != null ? turmas.stream().map(t -> t.getId().toString()).toList() : "[]") +
+                '}';
     }
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((turma == null) ? 0 : turma.hashCode());
-        result = prime * result + ((professor == null) ? 0 : professor.hashCode());
-        result = prime * result + ((ch == null) ? 0 : ch.hashCode());
-        result = prime * result + ((ementa == null) ? 0 : ementa.hashCode());
-        result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-        return result;
+        return Objects.hash(id, nome, ch);
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
+        if (this == obj) return true;
+        if (!(obj instanceof Disciplina)) return false;
         Disciplina other = (Disciplina) obj;
-        if (id == null) {
-            if (other.id != null)
-                return false;
-        } else if (!id.equals(other.id))
-            return false;
-        if (turma == null) {
-            if (other.turma != null)
-                return false;
-        } else if (!turma.equals(other.turma))
-            return false;
-        if (professor == null) {
-            if (other.professor != null)
-                return false;
-        } else if (!professor.equals(other.professor))
-            return false;
-        if (ch == null) {
-            if (other.ch != null)
-                return false;
-        } else if (!ch.equals(other.ch))
-            return false;
-        if (ementa == null) {
-            if (other.ementa != null)
-                return false;
-        } else if (!ementa.equals(other.ementa))
-            return false;
-        if (nome == null) {
-            if (other.nome != null)
-                return false;
-        } else if (!nome.equals(other.nome))
-            return false;
-        return true;
+        return Objects.equals(id, other.id);
     }
 
 }

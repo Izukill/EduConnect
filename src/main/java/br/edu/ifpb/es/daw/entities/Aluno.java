@@ -82,9 +82,9 @@ public class Aluno{
     @Override
     public String toString() {
         return "Aluno{" +
-                "matricula=" + matricula +
-                "id=" + Id +
-                "pessoa_id= " + pessoa.getId() +
-                "turma_id= " + turma.getId() + "}";
+                " matricula= " + matricula +
+                " id= " + Id +
+                " pessoa_id= " + pessoa.getId() +
+                " turma_id= " + turma.getId() + "}";
     }
 }

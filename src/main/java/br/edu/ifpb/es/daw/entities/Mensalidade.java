@@ -7,16 +7,35 @@ import java.time.LocalDate;
 @Table(name = "Mensalidades")
 public class Mensalidade {
 
-    public Mensalidade() {}
+    public Mensalidade() {
+
+    }
+
+    public Mensalidade(Aluno aluno, LocalDate data, Long id, StatusMensalidade status, Double valor, LocalDate vencimento) {
+        this.aluno = aluno;
+        this.data = data;
+        this.id = id;
+        this.status = status;
+        this.valor = valor;
+        this.vencimento = vencimento;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "fk_idAluno", nullable = false)
+    private Aluno aluno;
+
     private LocalDate data;
     private LocalDate vencimento;
     private Double valor;
-    private String status;
+
+
+    @Enumerated(EnumType.STRING)
+    private StatusMensalidade status;
 
 
 
@@ -48,12 +67,43 @@ public class Mensalidade {
         this.valor = valor;
     }
 
-    public String getStatus() {
+    public StatusMensalidade getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(StatusMensalidade status) {
         this.status = status;
     }
 
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Mensalidade [id=" + id + ", aluno=" + (aluno != null ? aluno.getId() : "null")
+                + ", data=" + data + ", vencimento=" + vencimento
+                + ", valor=" + valor + ", status=" + status + "]";
+    }
+
+    @Override
+    public int hashCode() {
+        return (id != null) ? id.hashCode() : 0;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof Mensalidade)) return false;
+        Mensalidade other = (Mensalidade) obj;
+        return id != null && id.equals(other.getId());
+    }
 }

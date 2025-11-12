@@ -7,8 +7,11 @@ import br.edu.ifpb.es.daw.dao.impl.AlunoDAOImpl;
 import br.edu.ifpb.es.daw.dao.impl.PessoaDAOImpl;
 import br.edu.ifpb.es.daw.entities.Aluno;
 import br.edu.ifpb.es.daw.entities.Pessoa;
+import br.edu.ifpb.es.daw.entities.Turma;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+
+import java.util.List;
 
 public class MainAlunoSave {
 
@@ -30,13 +33,16 @@ public class MainAlunoSave {
 
 
             //criação da turma
+            Turma turma= new Turma();
+            turma.setNome("2-A");
 
 
             Aluno aluno= new Aluno();
 
             aluno.setMatricula("" + System.nanoTime());
             aluno.setPessoa(pessoa);
-            //aluno.setTurma();
+            aluno.setTurma(turma);
+            turma.setAlunos(List.of(aluno));
 
             System.out.println(aluno.toString());
 

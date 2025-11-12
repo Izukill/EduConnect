@@ -3,9 +3,11 @@ package br.edu.ifpb.es.daw;
 import br.edu.ifpb.es.daw.dao.NotaDAO;
 import br.edu.ifpb.es.daw.dao.PersistenciaDawException;
 import br.edu.ifpb.es.daw.dao.impl.NotaDAOImpl;
-import br.edu.ifpb.es.daw.entities.Nota;
+import br.edu.ifpb.es.daw.entities.*;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+
+import java.util.List;
 
 public class MainNotaSave {
 
@@ -14,11 +16,30 @@ public class MainNotaSave {
             NotaDAO dao = new NotaDAOImpl(emf);
             Nota nota = new Nota();
 
-            nota.setNota_linguagens(8.5);
-            nota.setNota_redacao(9.0);
-            nota.setNota_ciencHumanas(7.5);
-            nota.setNota_ciencNatureza(8.0);
-            nota.setNota_matematica(6.5);
+            Turma turma= new Turma();
+            turma.setNome("1-A");
+
+            Pessoa pessoa = new Pessoa();
+            pessoa.setNome("João da Silva");
+            pessoa.setCpf("12082839851");
+            pessoa.setEmail("joao@email.com");
+
+            Aluno aluno = new Aluno();
+            turma.setAlunos(List.of(aluno));
+            aluno.setTurma(turma);
+            aluno.setPessoa(pessoa);
+            aluno.setMatricula("" + System.nanoTime());
+
+            Simulado simulado= new Simulado();
+
+
+            nota.setAluno(aluno);
+            nota.setSimulado(simulado);
+            nota.setNotaLinguagens(9.5);
+            nota.setNotaRedacao(9.5);
+            nota.setNotaMatematica(9.5);
+            nota.setNotaCienciasHumanas(9.5);
+            nota.setNotaCienciasNatureza(9.5);
 
             dao.save(nota);
 
