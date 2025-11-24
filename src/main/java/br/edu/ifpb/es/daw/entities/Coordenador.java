@@ -6,32 +6,19 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "Coordenadores")
-public class Coordenador {
+public class Coordenador extends Pessoa {
 
 
 
-    public Coordenador() {
+    public Coordenador()  {
     }
 
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long Id;
-
-    @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "pessoa_id")
-    private Pessoa pessoa;
 
     private float salario;
 
 
-    public Pessoa getPessoa() {
-        return pessoa;
-    }
 
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
-    }
 
     public float getSalario() {
         return salario;
@@ -39,14 +26,6 @@ public class Coordenador {
 
     public void setSalario(float salario) {
         this.salario = salario;
-    }
-
-    public Long getId() {
-        return Id;
-    }
-
-    public void setId(Long id) {
-        Id = id;
     }
 
     public boolean equals(Object o) {
@@ -63,9 +42,8 @@ public class Coordenador {
     @Override
     public String toString() {
         return "Coordenador{" +
-                "salario=" + salario +
-                "id=" + Id +
-                "pessoa_id = " + pessoa.getId() + "}";
+                ", salario=" + salario +
+                "} " + super.toString();
     }
 }
 

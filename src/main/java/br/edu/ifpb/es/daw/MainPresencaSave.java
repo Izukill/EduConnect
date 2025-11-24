@@ -18,17 +18,17 @@ public class MainPresencaSave {
 
             PresencaDAO dao = new PresencaDAOImpl(emf);
 
-            //criação pessoa(professor)
-            Pessoa pessoaProfessor = new Pessoa();
-            pessoaProfessor.setNome("Carlos Mendes");
-            pessoaProfessor.setCpf("111.222.333-44");
-            pessoaProfessor.setEmail("carlos@ifpb.edu.br");
-            pessoaProfessor.setTelefone("83998765432");
-            pessoaProfessor.setSenha_hash("prof123");
+
+
 
             //criação professor
             Professor professor = new Professor();
-            professor.setPessoa(pessoaProfessor);
+            professor.setNome("Carlos Mendes");
+            professor.setCpf("111.222.333-44");
+            professor.setEmail("carlos@ifpb.edu.br");
+            professor.setTelefone("83998765432");
+            professor.setSenha_hash("prof123");
+            professor.setSalario(0.f);
 
             //criação turma
             Turma turma = new Turma();
@@ -43,17 +43,16 @@ public class MainPresencaSave {
             aula.setData(LocalDate.now());
             aula.setObservacoes("Aula introdutória de revisão para ENEM.");
 
-            //criação pessoa
-            Pessoa pessoaAluno = new Pessoa();
-            pessoaAluno.setNome("João Pedro");
-            pessoaAluno.setCpf("999.888.777-66");
-            pessoaAluno.setEmail("joao@ifpb.edu.br");
-            pessoaAluno.setTelefone("83998887777");
-            pessoaAluno.setSenha_hash("aluno123");
+
+
 
             //criação aluno
             Aluno aluno = new Aluno();
-            aluno.setPessoa(pessoaAluno);
+            aluno.setNome("João Pedro");
+            aluno.setCpf("999.888.777-66");
+            aluno.setEmail("joao@ifpb.edu.br");
+            aluno.setTelefone("83998887777");
+            aluno.setSenha_hash("aluno123");
             aluno.setTurma(turma);
             aluno.setMatricula("" + System.nanoTime());
             turma.setAlunos(List.of(aluno));

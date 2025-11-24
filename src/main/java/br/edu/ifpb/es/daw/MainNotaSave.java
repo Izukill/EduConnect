@@ -19,15 +19,15 @@ public class MainNotaSave {
             Turma turma= new Turma();
             turma.setNome("1-A");
 
-            Pessoa pessoa = new Pessoa();
-            pessoa.setNome("João da Silva");
-            pessoa.setCpf("12082839851");
-            pessoa.setEmail("joao@email.com");
+
+
 
             Aluno aluno = new Aluno();
             turma.setAlunos(List.of(aluno));
             aluno.setTurma(turma);
-            aluno.setPessoa(pessoa);
+            aluno.setNome("João da Silva");
+            aluno.setCpf("12082839851");
+            aluno.setEmail("joao@email.com");
             aluno.setMatricula("" + System.nanoTime());
 
             Simulado simulado= new Simulado();

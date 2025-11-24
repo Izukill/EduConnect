@@ -20,17 +20,16 @@ public class MainDisciplinaSave {
             DisciplinaDAO dao = new DisciplinaDAOImpl(emf);
 
 
-            //Criação da Pessoa
-            Pessoa pessoaProfessor = new Pessoa();
-            pessoaProfessor.setNome("Carlos Henrique");
-            pessoaProfessor.setCpf("123.456.789-10");
-            pessoaProfessor.setEmail("carlos.professor@ifpb.edu.br");
-            pessoaProfessor.setTelefone("83998765432");
-            pessoaProfessor.setSenha_hash("senhaSegura123");
+
 
             //Criação do Professor
             Professor professor = new Professor();
-            professor.setPessoa(pessoaProfessor);
+            professor.setNome("Carlos Henrique");
+            professor.setCpf("123.456.789-10");
+            professor.setEmail("carlos.professor@ifpb.edu.br");
+            professor.setTelefone("83998765432");
+            professor.setSenha_hash("senhaSegura123");
+
 
 
             //Criação da Turma

@@ -16,17 +16,17 @@ public class MainSimuladoSave {
             SimuladoDAO dao = new SimuladoDAOImpl(emf);
 
 
-            // ===== Criação da PESSOA (Professor)
-            Pessoa pessoaProfessor = new Pessoa();
-            pessoaProfessor.setNome("Mariana Lima");
-            pessoaProfessor.setCpf("321.654.987-00");
-            pessoaProfessor.setEmail("mariana@ifpb.edu.br");
-            pessoaProfessor.setTelefone("83999887766");
-            pessoaProfessor.setSenha_hash("prof456");
+
+
 
             //Criação do PROFESSOR
             Professor professor = new Professor();
-            professor.setPessoa(pessoaProfessor);
+            professor.setNome("Mariana Lima");
+            professor.setCpf("321.654.987-00");
+            professor.setEmail("mariana@ifpb.edu.br");
+            professor.setTelefone("83999887766");
+            professor.setSenha_hash("prof456");
+            professor.setSalario(0.f);
 
             //Criação da DISCIPLINA
             Disciplina disciplina = new Disciplina();

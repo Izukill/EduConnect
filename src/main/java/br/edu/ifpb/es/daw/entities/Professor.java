@@ -7,19 +7,12 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "Professores")
-public class Professor {
+public class Professor extends Pessoa{
 
 
     public Professor() {
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long Id;
-
-    @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn (name = "pessoa_id")
-    private Pessoa pessoa;
 
 
     @OneToMany(mappedBy = "professor", cascade = CascadeType.REMOVE, orphanRemoval = true)
@@ -27,22 +20,6 @@ public class Professor {
 
     private float salario;
 
-
-    public Pessoa getPessoa() {
-        return pessoa;
-    }
-
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
-    }
-
-    public Long getId() {
-        return Id;
-    }
-
-    public void setId(Long id) {
-        Id = id;
-    }
 
     public float getSalario() {
         return salario;
@@ -67,11 +44,7 @@ public class Professor {
     @Override
     public String toString() {
         return "Professor{" +
-                "salario=" + salario +
-                "id=" + Id  +
-                "pessoa_id = " + pessoa.getId() + "}";
+                ", salario=" + salario +
+                "} " + super.toString();
     }
-
-
-
 }

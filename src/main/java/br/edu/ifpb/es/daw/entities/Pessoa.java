@@ -6,6 +6,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "Pessoas")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Pessoa {
 
 
@@ -26,19 +27,6 @@ public class Pessoa {
     private Long Id;
 
 
-
-    //Referencias para poder excluir pessoa e a sua referencia ao mesmo tempo
-
-    @OneToOne(mappedBy = "pessoa", cascade = CascadeType.REMOVE, orphanRemoval = true)
-    private Aluno aluno;
-
-
-    @OneToOne(mappedBy = "pessoa", cascade = CascadeType.REMOVE, orphanRemoval = true)
-    private Professor professor;
-
-
-    @OneToOne(mappedBy = "pessoa", cascade = CascadeType.REMOVE, orphanRemoval = true)
-    private Coordenador coordenador;
 
 
     private String nome;

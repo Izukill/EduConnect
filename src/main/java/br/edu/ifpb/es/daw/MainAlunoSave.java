@@ -22,25 +22,24 @@ public class MainAlunoSave {
 
             AlunoDAO dao = new AlunoDAOImpl(emf);
 
-            //criação de pessoa
-            Pessoa pessoa=new Pessoa();
 
-            pessoa.setNome("Luan loreto");
-            pessoa.setCpf("153.232.256-13");
-            pessoa.setTelefone("839981635");
-            pessoa.setEmail("luanloreto@gmail.com");
-            pessoa.setSenha_hash("1234323424");
+
+
 
 
             //criação da turma
             Turma turma= new Turma();
             turma.setNome("2-A");
 
-
+            //criação do aluno
             Aluno aluno= new Aluno();
 
             aluno.setMatricula("" + System.nanoTime());
-            aluno.setPessoa(pessoa);
+            aluno.setNome("Luan loreto");
+            aluno.setCpf("153.232.256-10");
+            aluno.setTelefone("839981635");
+            aluno.setEmail("EmailTeste@gmail.com");
+            aluno.setSenha_hash("234534@@#$dfg");
             aluno.setTurma(turma);
             turma.setAlunos(List.of(aluno));
 

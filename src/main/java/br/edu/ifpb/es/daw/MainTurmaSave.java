@@ -17,17 +17,17 @@ public class MainTurmaSave {
 
             TurmaDAO dao = new TurmaDAOImpl(emf);
 
-            //Criação da pessoa do professor
-            Pessoa pessoaProfessor = new Pessoa();
-            pessoaProfessor.setNome("Ricardo Gomes");
-            pessoaProfessor.setCpf("123.987.456-00");
-            pessoaProfessor.setEmail("ricardo@ifpb.edu.br");
-            pessoaProfessor.setTelefone("83991234567");
-            pessoaProfessor.setSenha_hash("senhaRicardo");
+
+
 
             //Criação do professor
             Professor professor = new Professor();
-            professor.setPessoa(pessoaProfessor);
+            professor.setNome("Ricardo Gomes");
+            professor.setCpf("123.987.456-00");
+            professor.setEmail("ricardo@ifpb.edu.br");
+            professor.setTelefone("83991234567");
+            professor.setSenha_hash("senhaRicardo");
+            professor.setSalario(0f);
 
             //Criação da disciplina
             Disciplina disciplina = new Disciplina();
@@ -42,18 +42,17 @@ public class MainTurmaSave {
             turma.setTurno("Manhã");
             turma.setDisciplinas(List.of(disciplina));
 
-            //Criação da pessoa (aluno)
-            Pessoa pessoaAluno = new Pessoa();
-            pessoaAluno.setNome("Luan Loreto");
-            pessoaAluno.setCpf("111.222.333-44");
-            pessoaAluno.setEmail("luanloreto@gmail.com");
-            pessoaAluno.setTelefone("839981635");
-            pessoaAluno.setSenha_hash("123456");
+
+
 
             //Criação do aluno
             Aluno aluno = new Aluno();
             aluno.setMatricula("" + System.nanoTime());
-            aluno.setPessoa(pessoaAluno);
+            aluno.setNome("Luan Loreto");
+            aluno.setCpf("111.222.333-44");
+            aluno.setEmail("luanloreto@gmail.com");
+            aluno.setTelefone("839981635");
+            aluno.setSenha_hash("123456");
             aluno.setTurma(turma);
 
             turma.setAlunos(List.of(aluno));

@@ -18,19 +18,16 @@ public class MainCoordenadorSave {
 
             CoordenadorDAO dao = new CoordenadorDAOImpl(emf);
 
-            //criação de pessoa
-            Pessoa pessoa=new Pessoa();
 
-            pessoa.setNome("Luan loreto");
-            pessoa.setCpf("153.232.256-13");
-            pessoa.setTelefone("839981635");
-            pessoa.setEmail("luanloreto@gmail.com");
-            pessoa.setSenha_hash("1234323424");
+
 
             Coordenador coordenador= new Coordenador();
 
-
-            coordenador.setPessoa(pessoa);
+            coordenador.setNome("Luan loreto");
+            coordenador.setCpf("153.232.256-13");
+            coordenador.setTelefone("839981635");
+            coordenador.setEmail("luanloreto@gmail.com");
+            coordenador.setSenha_hash("1234323424");
             coordenador.setSalario(2390.10f);
 
 

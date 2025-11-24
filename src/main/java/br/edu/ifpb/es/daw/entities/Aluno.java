@@ -8,27 +8,17 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "Alunos")
-public class Aluno{
+public class Aluno extends Pessoa{
 
 
     public Aluno() {
     }
 
-    public Aluno(Long id, String matricula, List<Nota> notas, Pessoa pessoa, Turma turma) {
-        Id = id;
+    public Aluno(Long id, String nome, String email, String senha_hash, String telefone, String cpf, String matricula, Turma turma) {
+        super(id, nome, email, senha_hash, telefone, cpf);
         this.matricula = matricula;
-        this.notas = notas;
-        this.pessoa = pessoa;
         this.turma = turma;
     }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long Id;
-
-    @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "pessoa_id")
-    private Pessoa pessoa;
 
 
     @OneToMany(mappedBy = "aluno", cascade = CascadeType.REMOVE, orphanRemoval = true)
@@ -84,13 +74,6 @@ public class Aluno{
         this.presencas = presencas;
     }
 
-    public Pessoa getPessoa() {
-        return pessoa;
-    }
-
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
-    }
 
     public Turma getTurma() {
         return turma;
@@ -100,13 +83,6 @@ public class Aluno{
         this.turma = turma;
     }
 
-    public Long getId() {
-        return Id;
-    }
-
-    public void setId(Long id) {
-        Id = id;
-    }
 
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -122,9 +98,8 @@ public class Aluno{
     @Override
     public String toString() {
         return "Aluno{" +
-                " matricula= " + matricula +
-                " id= " + Id +
-                " pessoa_id= " + pessoa.getId() +
-                " turma_id= " + turma.getId() + "}";
+                "matricula='" + matricula + '\'' +
+                "turma= " + turma.getNome() +
+                "} " + super.toString();
     }
 }

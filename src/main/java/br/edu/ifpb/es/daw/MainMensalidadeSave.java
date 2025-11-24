@@ -23,14 +23,8 @@ public class MainMensalidadeSave {
             mensalidade.setValor(150.00);
             mensalidade.setStatus(StatusMensalidade.PAGO);
 
-            //criação de pessoa
-            Pessoa pessoa=new Pessoa();
 
-            pessoa.setNome("Luan loreto");
-            pessoa.setCpf("153.232.256-13");
-            pessoa.setTelefone("839981635");
-            pessoa.setEmail("luanloreto@gmail.com");
-            pessoa.setSenha_hash("1234323424");
+
 
 
             //criação da turma
@@ -41,7 +35,11 @@ public class MainMensalidadeSave {
             Aluno aluno= new Aluno();
 
             aluno.setMatricula("" + System.nanoTime());
-            aluno.setPessoa(pessoa);
+            aluno.setNome("Luan loreto");
+            aluno.setCpf("153.232.256-13");
+            aluno.setTelefone("839981635");
+            aluno.setEmail("luanloreto@gmail.com");
+            aluno.setSenha_hash("1234323424");
             aluno.setTurma(turma);
             turma.setAlunos(List.of(aluno));
 

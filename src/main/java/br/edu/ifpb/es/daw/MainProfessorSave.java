@@ -17,19 +17,17 @@ public class MainProfessorSave {
 
             ProfessorDAO dao = new ProfessorDAOImpl(emf);
 
-            //criação de pessoa
-            Pessoa pessoa=new Pessoa();
 
-            pessoa.setNome("Luan loreto");
-            pessoa.setCpf("153.232.256-13");
-            pessoa.setTelefone("839981635");
-            pessoa.setEmail("luanloreto@gmail.com");
-            pessoa.setSenha_hash("1234323424");
+
 
             Professor professor= new Professor();
 
             professor.setSalario(1.00f);
-            professor.setPessoa(pessoa);
+            professor.setNome("Luan loreto");
+            professor.setCpf("153.232.256-13");
+            professor.setTelefone("839981635");
+            professor.setEmail("luanloreto@gmail.com");
+            professor.setSenha_hash("1234323424");
 
 
             System.out.println(professor.toString());
