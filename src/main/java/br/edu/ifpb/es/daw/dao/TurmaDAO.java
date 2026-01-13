@@ -4,4 +4,6 @@ import br.edu.ifpb.es.daw.entities.Turma;
 
 public interface TurmaDAO extends DAO<Turma, Long> {
 
+    public Turma findByname(String nome) throws PersistenciaDawException;
+
 }

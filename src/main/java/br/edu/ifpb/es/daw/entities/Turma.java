@@ -84,6 +84,14 @@ public class Turma {
         this.nome = nome;
     }
 
+    public List<Aula> getAulas() {
+        return aulas;
+    }
+
+    public void setAulas(List<Aula> aulas) {
+        this.aulas = aulas;
+    }
+
     @Override
     public String toString() {
         return "Turma{" +

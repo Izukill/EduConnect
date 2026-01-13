@@ -45,6 +45,8 @@ public class MainMensalidadeSave {
 
             mensalidade.setAluno(aluno);
 
+            aluno.getMensalidades().add(mensalidade);
+
 
             dao.save(mensalidade);
 

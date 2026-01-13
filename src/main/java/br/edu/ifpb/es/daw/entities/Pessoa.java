@@ -11,7 +11,7 @@ public class Pessoa {
 
 
     public Pessoa(Long id, String nome, String email, String senha_hash, String telefone, String cpf) {
-        Id = id;
+        this.id = id;
         this.nome = nome;
         this.email = email;
         this.senha_hash = senha_hash;
@@ -24,7 +24,7 @@ public class Pessoa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long Id;
+    private Long id;
 
 
 
@@ -40,7 +40,7 @@ public class Pessoa {
     private String cpf;
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public String getNome() {
@@ -87,17 +87,17 @@ public class Pessoa {
         if (this == o) return true;
         if (!(o instanceof Pessoa)) return false;
         Pessoa pessoa = (Pessoa) o;
-        return Objects.equals(Id, pessoa.Id);
+        return Objects.equals(id, pessoa.id);
     }
 
     public int hashCode() {
-        return Objects.hashCode(Id);
+        return Objects.hashCode(id);
     }
 
     @Override
     public String toString() {
         return "Pessoa{" +
-                "Id=" + Id +
+                "Id=" + id +
                 ", nome='" + nome + '\'' +
                 ", email='" + email + '\'' +
                 ", senha_hash='" + senha_hash + '\'' +

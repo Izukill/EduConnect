@@ -25,7 +25,7 @@ public class Aluno extends Pessoa{
     private List<Nota> notas;
 
 
-    @OneToMany(mappedBy = "aluno", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy = "aluno", cascade = CascadeType.REMOVE, orphanRemoval = true) //o padrão do one2many já é lazy
     private List<Mensalidade> mensalidades;
 
 
